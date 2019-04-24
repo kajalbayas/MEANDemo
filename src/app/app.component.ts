@@ -8,4 +8,5 @@ import{Router,RouterLink} from '@angular/router';
 })
 export class AppComponent {
   title = 'demo';
+ // logintitle='Sign In';
 }

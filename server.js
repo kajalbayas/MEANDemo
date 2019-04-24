@@ -25,7 +25,10 @@ mongoose.Promise = global.Promise;
 //for resolving error Access to XMLHttpRequest at 'http://localhost:8000/api/getemp' from origin 'http://localhost:4200' has been blocked by CORS(CORS (Cross-Origin Resource Sharing) ) (policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
+    
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+   
     next();
 });
 
@@ -42,7 +45,7 @@ mongoose.connect('mongodb://localhost:27017/employee',
 
 var employeeschema = new mongoose.Schema(
     {
-        //id: Number,
+        empid: String,
         name: String,
         city: String,
         designation: String
@@ -73,7 +76,7 @@ app.get('/api/getempbyid/:id',(req,res)=>
         console.log(post);
      
         //if (err) return next(err);
-        //res.json(post);
+        res.json(post);
     })
 });
 
@@ -85,6 +88,7 @@ app.post('/api/saveemp', (req, res) =>
         ({
 
             //id: req.body.id,
+            empid: req.body.empid,
             name: req.body.name,
             city: req.body.city,
             designation: req.body.designation
@@ -94,14 +98,16 @@ app.post('/api/saveemp', (req, res) =>
 
 
 
-app.put('/api/emp/:id', (req, res) =>
+app.put('/api/updateemp/:id', (req, res) =>
  {
      debugger;
     console.log("put");
     console.log(req.params.id);
+    console.log(req.body)
     Emp.findByIdAndUpdate({_id:req.params.id},
         {
-            id: req.body.id,
+            //id: req.body.id,
+            empid: req.body.empid,
             name: req.body.name,
             city: req.body.city,
             designation: req.body.designation
@@ -118,7 +124,7 @@ app.put('/api/emp/:id', (req, res) =>
 
     });
 
-    app.delete('/api/emp/id', (req, res) => {
+    app.delete('/api/deleteemp/:id', (req, res) => {
         console.log('delete');
         Emp.findByIdAndRemove({ _id: req.params.id },
             function (err, data) {

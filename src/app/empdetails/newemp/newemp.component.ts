@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{ActivatedRoute} from '@angular/router';
+import{ActivatedRoute,Params} from '@angular/router';
 import {Emp} from '../emp.model';
 import {EmpserviceService}  from '../empservice.service';
 
@@ -23,42 +23,29 @@ export class NewempComponent implements OnInit
 
  }
 
+ getparams(employeeid):void
+ {
+  debugger;
+   this.empserivce.getemployeedetailsbyid(employeeid).subscribe(
+        (data:any)=>
+        {
+          debugger;
+         console.log('fetched data'+data);
+         this.selectedemp = data;
+       })
+  }
 
 ngOnInit()
 {
-  
+  debugger;
+
+this.activatedroute.params.subscribe((params:Params) => 
+{
 debugger;
-/*this.activatedroute.params.subscribe((params) => 
-  {
-    this.empid=params.id;
-    console.log(this.empid);
-  })
-
-  this.activatedroute.paramMap.subscribe(
-    (paramMap)=>
-    {
-      debugger;
-      this.empid = parseInt(paramMap.get('id'));
-      console.log(this.empid);
-      this.empserivce.getemployeedetailsbyid(this.empid).subscribe(
-       (emp:Emp)=>
-       {
-         debugger;
-        console.log(emp);
-        this.selectedemp = emp;
-      }
-      )
-    }
-  )*/
-
+this.empid=params['id'];
+console.log('selected id'+this.empid);
+this.getparams(this.empid);
+})
 }
 
-
-
-}
-
-
-
-
-
-
+ }

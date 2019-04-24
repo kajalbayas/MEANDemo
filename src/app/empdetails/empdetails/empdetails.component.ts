@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Emp } from './emp.model'
-import { EmpserviceService } from './empservice.service';
+import { Emp} from '../emp.model'
+import {EmpserviceService} from '../empservice.service';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 //import {HttpResponse} from '@angular/common/http';
@@ -18,6 +18,7 @@ export class EmpdetailsComponent implements OnInit
   employeeform: FormGroup;
   selectedProduct: Emp = new Emp();
   emp: Emp[] = [];
+  statusCode: string = '';
 
   isUpdate:boolean=false;
 
@@ -53,15 +54,27 @@ export class EmpdetailsComponent implements OnInit
     this.isUpdate=true;
     debugger;
     
-     this.empservice.getemployeedetailsbyid(data).subscribe(
-       (data:any)=>
-       {
+    this.employeeform.setValue({
+      //empid:data.empid,
+      name:data.name,
+      city: data.city,
+      designation:data.designation,
+      empid:data.empid,
+      _id:data._id
 
-        console.log(data);
-         this.newemp=data;
-        console.log("---------"+this.newemp);
-         }
-     )
+    }); // new code. here u only need to bind the data to form using set value function
+
+
+    
+    //  this.empservice.getemployeedetailsbyid(data).subscribe(
+    //    (data:any)=>
+    //    {
+
+    //     console.log(data);
+    //      this.newemp=data;
+    //     console.log("---------"+this.newemp);
+    //      }
+    //  ) old code
 }
 
   //emp= new Array<Emp>();
@@ -72,10 +85,11 @@ export class EmpdetailsComponent implements OnInit
   createempform() {
     this.employeeform = this.formbuilder.group(
       {
-        id: [''],
+        empid: [''],
         name: [''],
         city: [''],
-        designation: ['']
+        designation: [''],
+        _id:['']
 
       });
   }
@@ -109,6 +123,7 @@ export class EmpdetailsComponent implements OnInit
      {
        debugger;
         console.log(data);
+        this.statusCode = "200";
         //console.log("-----------");
         this.showallemp();
       }
@@ -128,7 +143,10 @@ export class EmpdetailsComponent implements OnInit
            {
              debugger;
              console.log(data);
+             this.statusCode = "201";
             this.showallemp();
+            this.isUpdate = false;
+            this.employeeform.reset()
            }
          )
 
@@ -137,15 +155,15 @@ export class EmpdetailsComponent implements OnInit
 
   
 
-   delete(id:number):void
+   delete(emp:any):void
     {
       let confirmMsg = confirm("Are you sure want to delete?");
       if(confirmMsg)
       {
-        this.empservice.deletProductById(id).subscribe(
+        this.empservice.deletProductById(emp._id).subscribe(
           (data:any)=>
           {
-            //this.statusCode = "400";
+            this.statusCode = "400";
             this.showallemp();
           }
         )

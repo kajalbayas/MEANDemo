@@ -3,8 +3,8 @@
 import {RouterModule,Routes} from '@angular/router';
 import {NgModule, Component} from '@angular/core';
 import{NewempComponent} from './newemp/newemp.component';
-import{EmpdetailsComponent} from './empdetails.component';
-import{EmpmainComponent} from './empmain/empmain.component';
+import{EmpdetailsComponent} from './empdetails/empdetails.component';
+import{EmpmainComponent} from './empmain.component';
 
 const routes:Routes=[
     {

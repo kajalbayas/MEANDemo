@@ -3,10 +3,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {EmpdetailsComponent} from './empdetails.component';
+import {EmpdetailsComponent} from './empdetails/empdetails.component';
 import {NewempComponent} from './newemp/newemp.component';
 import {EmployeeRoutingModule} from './emp-routing.module';
-import { EmpmainComponent } from './empmain/empmain.component';
+import {EmpmainComponent} from './empmain.component';
+//import {Employeedetailsauthservice} from './empdeatils_guard.service';
+//import {Authentication} from './authentication.service';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { EmpmainComponent } from './empmain/empmain.component';
         ReactiveFormsModule,
         EmployeeRoutingModule
     ],
-    providers: []
+    providers:[]
+    //providers: [Employeedetailsauthservice,Authentication]
 })
 
 export class EmployeeModule{

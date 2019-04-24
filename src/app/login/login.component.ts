@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ReactiveFormsModule, FormArray, FormBuilder, FormControl, FormGroup, Validators, MaxLengthValidator } from '@angular/forms';
 import { Router } from '@angular/router'
 import{Authentication} from '../empdetails/authentication.service';
@@ -10,7 +10,10 @@ import{Authentication} from '../empdetails/authentication.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit 
+{
+
+ // @Input() title:string;
 
   empform: FormGroup;
   
@@ -42,20 +45,7 @@ export class LoginComponent implements OnInit {
 
 
 
-      //this.issubmittedvalue = true;
-
-
-     /* if (this.username === ename && this.password === epwd) 
-      {
-        alert("login Succssfully");
-        this.router.navigateByUrl('/emp');
-        //this.empform.reset();
-       }
-      else
-      {
-      //this.empform.reset();
-       } */
-       
+     
 
        //this.authenticationService.authenticate('admin','45678').subscribe(
        this.authenticationService.authenticate(ename,epwd).subscribe(

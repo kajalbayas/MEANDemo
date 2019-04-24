@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
-/*const httpOptions = {
-  headers: new HttpHeaders({ 
-    'Access-Control-Allow-Origin':'*',
-    'Authorization':'authkey',
-    'userid':'1'
-  })
-};*/
+// const httpOptions = {
+//   
+// };
 
+const httpOptions = {
+  headers: new HttpHeaders({ 
+         'Access-Control-Allow-Origin':'*',
+         'Authorization':'authkey',
+         'userid':'1'
+      })
+};
 
 import { Http,Response } from '@angular/http';
 import{Emp} from './emp.model';
@@ -42,23 +45,22 @@ export class EmpserviceService
    debugger;
    
   // this.Appurl="http://localhost:8000/api/getempbyid/:id";
-  this.Appurl="http://localhost:8000/api/getempbyid/:id";
+  this.Appurl="http://localhost:8000/api/getempbyid";
    return this.httpclient.get(this.Appurl+'/'+id);
  }
 
 
 
 
-updateempdetails(emp:Emp):Observable<any>
-{
-  this.Appurl="http://localhost:8000/api/emp/:id";
-  return this.httpclient.put(this.Appurl+'/'+emp.id,emp);
+updateempdetails(emp:any):Observable<any>
+{debugger
+  this.Appurl="http://localhost:8000/api/updateemp";
+  return this.httpclient.put(this.Appurl+'/'+emp._id,emp)
 }
-
 
 deletProductById(id:number):Observable<any>
 {
-  this.Appurl="http://localhost:8000/api/emp/id";
+  this.Appurl="http://localhost:8000/api/deleteemp";
   return this.httpclient.delete<any>(this.Appurl+"/"+id);
 }
 

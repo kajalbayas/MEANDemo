@@ -14,8 +14,10 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import{Employeedetailsauthservice} from './empdetails/empdeatils_guard.service';
 //import{EmpserviceService} from './empdetails/empservice.service';
 import { Authentication } from './empdetails/authentication.service';
-//import { NewempComponent } from './empdetails/newemp/newemp.component';
+
 import{EmployeeModule} from './empdetails/employee.module';
+import { AboutComponent } from './about/about.component';
+import { ElementhighlightDirective } from './elementhighlight.directive';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import{EmployeeModule} from './empdetails/employee.module';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    AboutComponent,
+    ElementhighlightDirective
     //EmpdetailsComponent
     //NewempComponent
  
@@ -38,7 +42,7 @@ import{EmployeeModule} from './empdetails/employee.module';
     HttpModule
 
   ],
-  //providers:[],
+ // providers:[],
   providers: [Authentication,Employeedetailsauthservice],
   bootstrap: [AppComponent]
 })

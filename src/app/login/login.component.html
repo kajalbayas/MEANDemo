@@ -1,13 +1,13 @@
 <div class="container login-container">
   <div class="row">
     <div class="col-md-6 login-form-1">
-      <h3>Sign In </h3>
+      <h3>Sign In</h3>
 
 
       <form [formGroup]="empform" (onSubmit)="signin()">
         <div class="row form-group">
           <label>Email_id :</label>
-          <span class="glyphicon glyphicon-user"></span>
+          <!--<span class="glyphicon glyphicon-user"></span>-->
           <input type="text" name="email_id" class="form-control" formControlName="email_id"
             placeholder="pleaase enter emailid here">
           <!---<div *ngIf="(email_id.dirty && email_id.touched)" class="error-msg">
